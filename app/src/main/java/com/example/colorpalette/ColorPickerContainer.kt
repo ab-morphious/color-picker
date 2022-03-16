@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.Nullable
+import androidx.core.view.*
 import com.example.colorpalette.*
 import com.example.colorpalette.helpers.ThrottledTouchEventHandler
 
@@ -26,7 +27,7 @@ class ColorPickerContainer @JvmOverloads constructor(
     private var centerY = 0f
     private var selectorRadiusPx: Float = 27F
     private val currentPoint = PointF()
-    private var currentColor = Color.GREEN
+    private var currentColor = Color.RED
     private var onlyUpdateOnTouchEventUp = false
     private var selector: ColorWheelSelector? = null
     private val emitter: ColorObservableEmitter = ColorObservableEmitter()
@@ -50,9 +51,9 @@ class ColorPickerContainer @JvmOverloads constructor(
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        val netWidth = w - paddingLeft - paddingRight
-        val netHeight = h - paddingTop - paddingBottom
-        radius = Math.min(netWidth, netHeight) * 0.5f - selectorRadiusPx
+        val netWidth = w - paddingLeft - paddingRight - marginLeft - marginRight
+        val netHeight = h - paddingTop - paddingBottom - marginTop - marginBottom
+        radius = (Math.min(netWidth, netHeight) * 0.5f - selectorRadiusPx) - 45
         if (radius < 0) return
         centerX = (netWidth) * 0.5f
         centerY = (netHeight) * 0.5f
@@ -152,6 +153,9 @@ class ColorPickerContainer @JvmOverloads constructor(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
+        layoutParams0.setMargins(
+            50
+        )
         val palette0 = CircleColorPalette(context!!, null)
         addView(palette0, layoutParams0)
 
@@ -166,7 +170,7 @@ class ColorPickerContainer @JvmOverloads constructor(
         addView(selector, layoutParams)
 
         val frameLayoutParams = LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
+            300,
             60
         )
 
@@ -216,7 +220,7 @@ class ColorPickerContainer @JvmOverloads constructor(
         })
 
         colorSelect2.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#00c2a3"), false)
+            setColor(Color.parseColor("#4ba54f"), false)
             colorSelect2.setBackgroundColor(Color.parseColor("#3b3b3b"))
             colorSelect1.setBackgroundColor(Color.parseColor("#2c2c2c"))
             colorSelect3.setBackgroundColor(Color.parseColor("#2c2c2c"))
@@ -224,7 +228,7 @@ class ColorPickerContainer @JvmOverloads constructor(
         })
 
         colorSelect3.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#00c2a3"), false)
+            setColor(Color.parseColor("#ff6100"), false)
             colorSelect3.setBackgroundColor(Color.parseColor("#3b3b3b"))
             colorSelect1.setBackgroundColor(Color.parseColor("#2c2c2c"))
             colorSelect2.setBackgroundColor(Color.parseColor("#2c2c2c"))
