@@ -165,6 +165,13 @@ class ColorPickerContainer @JvmOverloads constructor(
 
         addView(selector, layoutParams)
 
+        val frameLayoutParams = LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            60
+        )
+
+        var frameLayout = FrameLayout(context)
+        frameLayout.setBackgroundColor(Color.parseColor("#2c2c2c"))
 
         val layoutParamColorSelector = LayoutParams(
             50,
@@ -173,11 +180,8 @@ class ColorPickerContainer @JvmOverloads constructor(
         layoutParamColorSelector.setMargins(50, 0, 0, 0)
         colorSelect1 = ThreeWaySegmentItem(context)
         colorSelect1.setFillColor(Color.parseColor("#00c2a3"))
-        addView(colorSelect1, layoutParamColorSelector)
+        frameLayout.addView(colorSelect1, layoutParamColorSelector)
 
-        colorSelect1.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#00c2a3"), false)
-        })
         val layoutParamColorSelector2 = LayoutParams(
             50,
             50
@@ -186,11 +190,9 @@ class ColorPickerContainer @JvmOverloads constructor(
 
         colorSelect2 = ThreeWaySegmentItem(context)
         colorSelect2.setFillColor(Color.parseColor("#4ba54f"))
-        colorSelect2.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#4ba54f"), false)
-        })
 
-        addView(colorSelect2, layoutParamColorSelector2)
+
+        frameLayout.addView(colorSelect2, layoutParamColorSelector2)
 
         val layoutParamColorSelector3 = LayoutParams(
             50,
@@ -200,10 +202,33 @@ class ColorPickerContainer @JvmOverloads constructor(
 
         colorSelect3 = ThreeWaySegmentItem(context)
         colorSelect3.setFillColor(Color.parseColor("#ff6100"))
-        colorSelect3.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#ff6100"), false)
-        })
-        addView(colorSelect3, layoutParamColorSelector3)
 
+        frameLayout.addView(colorSelect3, layoutParamColorSelector3)
+
+        addView(frameLayout, frameLayoutParams)
+
+        colorSelect1.setOnClickListener(OnClickListener {
+            setColor(Color.parseColor("#00c2a3"), false)
+            colorSelect1.setBackgroundColor(Color.parseColor("#3b3b3b"))
+            colorSelect2.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            colorSelect3.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            invalidate()
+        })
+
+        colorSelect2.setOnClickListener(OnClickListener {
+            setColor(Color.parseColor("#00c2a3"), false)
+            colorSelect2.setBackgroundColor(Color.parseColor("#3b3b3b"))
+            colorSelect1.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            colorSelect3.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            invalidate()
+        })
+
+        colorSelect3.setOnClickListener(OnClickListener {
+            setColor(Color.parseColor("#00c2a3"), false)
+            colorSelect3.setBackgroundColor(Color.parseColor("#3b3b3b"))
+            colorSelect1.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            colorSelect2.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            invalidate()
+        })
     }
 }
