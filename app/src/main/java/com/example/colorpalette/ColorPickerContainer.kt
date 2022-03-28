@@ -36,7 +36,7 @@ class ColorPickerContainer @JvmOverloads constructor(
     private var colorSelect1: ThreeWaySegmentItem
     private var colorSelect2: ThreeWaySegmentItem
     private var colorSelect3: ThreeWaySegmentItem
-    private var selectedColorSegment = -1;
+    private var selectedColorSegment = 0
     private val TEAL = parseColor("#00c2a3")
     private val GREEN = parseColor("#4ba54f")
     private val ORANGE = parseColor("#ff6100")
