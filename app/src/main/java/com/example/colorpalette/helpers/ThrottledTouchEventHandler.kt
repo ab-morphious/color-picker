@@ -17,7 +17,6 @@ class ThrottledTouchEventHandler {
 
     constructor (updatable: Updatable?) : this(Constants.EVENT_MIN_INTERVAL, updatable!!)
 
-
     fun onTouchEvent(event: MotionEvent?) {
         if (updatable == null) return
         val current = System.currentTimeMillis()

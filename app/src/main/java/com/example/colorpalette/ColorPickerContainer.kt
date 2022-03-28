@@ -89,32 +89,35 @@ class ColorPickerContainer @JvmOverloads constructor(
         val isTouchUpEvent = event.actionMasked == MotionEvent.ACTION_UP
         if (!onlyUpdateOnTouchEventUp || isTouchUpEvent) {
             emitter.onColor(getColorAtPoint(x, y), true, isTouchUpEvent)
-            var sColor : Int = getColorAtPoint(x, y);
-
-            when(selectedColorSegment)
-            {
-                0 -> {
-                    colorSelect1.setFillColor(sColor)
-                }
-                1 -> {
-                    colorSelect2.setFillColor(sColor)
-                }
-                2 -> {
-                    colorSelect3.setFillColor(sColor)
-                }
-                else -> {
-                    colorSelect1.setFillColor(parseColor(DEFAULT_COLOR))
-                    colorSelect2.setFillColor(parseColor(DEFAULT_COLOR))
-                    colorSelect3.setFillColor(parseColor(DEFAULT_COLOR))
-                }
-            }
-            segmentColors[selectedColorSegment] = sColor
+            handleColorSegments(x,y)
             invalidate()
         }
         updateSelector(x, y)
     }
 
+    private fun handleColorSegments( x: Float,  y: Float)
+    {
+        var sColor : Int = getColorAtPoint(x, y);
 
+        when(selectedColorSegment)
+        {
+            0 -> {
+                colorSelect1.setFillColor(sColor)
+            }
+            1 -> {
+                colorSelect2.setFillColor(sColor)
+            }
+            2 -> {
+                colorSelect3.setFillColor(sColor)
+            }
+            else -> {
+                colorSelect1.setFillColor(parseColor(DEFAULT_COLOR))
+                colorSelect2.setFillColor(parseColor(DEFAULT_COLOR))
+                colorSelect3.setFillColor(parseColor(DEFAULT_COLOR))
+            }
+        }
+        segmentColors[selectedColorSegment] = sColor
+    }
     private fun getColorAtPoint(eventX: Float, eventY: Float): Int {
         val x = eventX - centerX
         val y = eventY - centerY
