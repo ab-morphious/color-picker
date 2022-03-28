@@ -5,6 +5,7 @@ import android.view.MotionEvent
 import top.defaults.colorpicker.Updatable
 
 class ThrottledTouchEventHandler {
+
     private var minInterval = Constants.EVENT_MIN_INTERVAL
     private var updatable: Updatable? = null
     private var lastPassedEventTime: Long = 0

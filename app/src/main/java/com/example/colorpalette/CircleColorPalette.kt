@@ -46,6 +46,7 @@ class CircleColorPalette : View {
         )
 
         huePaint!!.shader = hueShaderS
+
         val saturationShader: Shader = RadialGradient(
             centerX, centerY, radius,
             Color.WHITE, 0x00FFFFFF, Shader.TileMode.CLAMP

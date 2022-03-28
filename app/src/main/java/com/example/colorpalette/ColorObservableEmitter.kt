@@ -4,7 +4,8 @@ import ColorObservable
 import com.example.colorpalette.ColorChange
 
 internal class ColorObservableEmitter : ColorObservable {
-    private val observers: MutableList<ColorChange> = ArrayList<ColorChange>()
+
+    private val observers: MutableList<ColorChange> = ArrayList<>()
     private var color = 0
     override fun subscribe(observer: ColorChange?) {
         if (observer == null) return

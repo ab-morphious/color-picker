@@ -24,18 +24,10 @@ class ThreeWaySegmentItem @JvmOverloads constructor(
 
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
-
     override fun onDraw(canvas: Canvas) {
         canvas!!.drawCircle(width * 1f / 2, height * 1f / 2, 20f, selectorPaint)
     }
 
-    fun setCurrentPoint(currentPoint: PointF) {
-        this.currentPoint = currentPoint
-        invalidate()
-    }
 
     fun setFillColor(color : Int)
     {
