@@ -36,6 +36,13 @@ class ColorPickerContainer @JvmOverloads constructor(
     private var colorSelect1: ThreeWaySegmentItem
     private var colorSelect2: ThreeWaySegmentItem
     private var colorSelect3: ThreeWaySegmentItem
+    private var selectedColorSegment = -1;
+    private val TEAL = parseColor("#00c2a3")
+    private val GREEN = parseColor("#4ba54f")
+    private val ORANGE = parseColor("#ff6100")
+    private var segmentColors : MutableList<Int> = mutableListOf<Int>(TEAL, GREEN,
+        ORANGE)
+    private val DEFAULT_COLOR = "#2c2c2c"
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val maxWidth = MeasureSpec.getSize(widthMeasureSpec)
@@ -82,9 +89,31 @@ class ColorPickerContainer @JvmOverloads constructor(
         val isTouchUpEvent = event.actionMasked == MotionEvent.ACTION_UP
         if (!onlyUpdateOnTouchEventUp || isTouchUpEvent) {
             emitter.onColor(getColorAtPoint(x, y), true, isTouchUpEvent)
+            var sColor : Int = getColorAtPoint(x, y);
+
+            when(selectedColorSegment)
+            {
+                0 -> {
+                    colorSelect1.setFillColor(sColor)
+                }
+                1 -> {
+                    colorSelect2.setFillColor(sColor)
+                }
+                2 -> {
+                    colorSelect3.setFillColor(sColor)
+                }
+                else -> {
+                    colorSelect1.setFillColor(parseColor(DEFAULT_COLOR))
+                    colorSelect2.setFillColor(parseColor(DEFAULT_COLOR))
+                    colorSelect3.setFillColor(parseColor(DEFAULT_COLOR))
+                }
+            }
+            segmentColors[selectedColorSegment] = sColor
+            invalidate()
         }
         updateSelector(x, y)
     }
+
 
     private fun getColorAtPoint(eventX: Float, eventY: Float): Int {
         val x = eventX - centerX
@@ -144,6 +173,9 @@ class ColorPickerContainer @JvmOverloads constructor(
         return emitter.getColor()
     }
 
+    fun parseColor(color : String) : Int{
+        return Color.parseColor(color);
+    }
     init {
 
         selectorRadiusPx = 27f * resources.displayMetrics.density
@@ -212,26 +244,21 @@ class ColorPickerContainer @JvmOverloads constructor(
         addView(frameLayout, frameLayoutParams)
 
         colorSelect1.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#00c2a3"), false)
-            colorSelect1.setBackgroundColor(Color.parseColor("#3b3b3b"))
-            colorSelect2.setBackgroundColor(Color.parseColor("#2c2c2c"))
-            colorSelect3.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            selectedColorSegment = 0;
+            setColor(segmentColors[selectedColorSegment], false)
             invalidate()
         })
 
+
         colorSelect2.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#4ba54f"), false)
-            colorSelect2.setBackgroundColor(Color.parseColor("#3b3b3b"))
-            colorSelect1.setBackgroundColor(Color.parseColor("#2c2c2c"))
-            colorSelect3.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            selectedColorSegment = 1;
+            setColor(segmentColors[selectedColorSegment], false)
             invalidate()
         })
 
         colorSelect3.setOnClickListener(OnClickListener {
-            setColor(Color.parseColor("#ff6100"), false)
-            colorSelect3.setBackgroundColor(Color.parseColor("#3b3b3b"))
-            colorSelect1.setBackgroundColor(Color.parseColor("#2c2c2c"))
-            colorSelect2.setBackgroundColor(Color.parseColor("#2c2c2c"))
+            selectedColorSegment = 2;
+            setColor(segmentColors[selectedColorSegment], false)
             invalidate()
         })
     }
