@@ -252,7 +252,6 @@ class ColorPickerContainer @JvmOverloads constructor(
             invalidate()
         })
 
-
         colorSelect2.setOnClickListener(OnClickListener {
             selectedColorSegment = 1;
             setColor(segmentColors[selectedColorSegment], false)
