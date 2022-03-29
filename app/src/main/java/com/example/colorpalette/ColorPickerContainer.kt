@@ -41,8 +41,9 @@ class ColorPickerContainer @JvmOverloads constructor(
     private var colorSelect3: ThreeWaySegmentItem
     private var selectedColorSegment = -1
 
-    private var segmentColors : MutableList<Int> = mutableListOf<Int>(TEAL, GREEN,
-        ORANGE)
+    private var segmentColors: MutableList<Int> = mutableListOf<Int>(
+        TEAL, GREEN, ORANGE
+    )
     private val DEFAULT_COLOR = "#2c2c2c"
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -90,18 +91,16 @@ class ColorPickerContainer @JvmOverloads constructor(
         val isTouchUpEvent = event.actionMasked == MotionEvent.ACTION_UP
         if (!onlyUpdateOnTouchEventUp || isTouchUpEvent) {
             emitter.onColor(getColorAtPoint(x, y), true, isTouchUpEvent)
-           if(selectedColorSegment != -1) handleColorSegments(x,y)
+            if (selectedColorSegment != -1) handleColorSegments(x, y)
             invalidate()
         }
         updateSelector(x, y)
     }
 
-    private fun handleColorSegments( x: Float,  y: Float)
-    {
-        var sColor : Int = getColorAtPoint(x, y);
+    private fun handleColorSegments(x: Float, y: Float) {
+        var sColor: Int = getColorAtPoint(x, y);
 
-        when(selectedColorSegment)
-        {
+        when (selectedColorSegment) {
             0 -> {
                 colorSelect1.setFillColor(sColor)
             }
@@ -119,6 +118,7 @@ class ColorPickerContainer @JvmOverloads constructor(
         }
         segmentColors[selectedColorSegment] = sColor
     }
+
     private fun getColorAtPoint(eventX: Float, eventY: Float): Int {
         val x = eventX - centerX
         val y = eventY - centerY
@@ -177,9 +177,10 @@ class ColorPickerContainer @JvmOverloads constructor(
         return emitter.getColor()
     }
 
-    fun parseColor(color : String) : Int{
+    fun parseColor(color: String): Int {
         return Color.parseColor(color);
     }
+
     init {
 
         selectorRadiusPx = 27f * resources.displayMetrics.density
@@ -219,18 +220,18 @@ class ColorPickerContainer @JvmOverloads constructor(
         )
         layoutParamColorSelector.setMargins(50, 0, 0, 0)
         colorSelect1 = ThreeWaySegmentItem(context)
-        colorSelect1.setFillColor(Color.parseColor("#00c2a3"))
+        colorSelect1.setFillColor(TEAL)
         frameLayout.addView(colorSelect1, layoutParamColorSelector)
 
         val layoutParamColorSelector2 = LayoutParams(
             50,
             50
         )
+
         layoutParamColorSelector2.setMargins(50 + 50 + 25, 0, 0, 0)
 
         colorSelect2 = ThreeWaySegmentItem(context)
-        colorSelect2.setFillColor(Color.parseColor("#4ba54f"))
-
+        colorSelect2.setFillColor(GREEN)
 
         frameLayout.addView(colorSelect2, layoutParamColorSelector2)
 
@@ -241,7 +242,7 @@ class ColorPickerContainer @JvmOverloads constructor(
         layoutParamColorSelector3.setMargins(50 + 50 + 25 + 50 + 25, 0, 0, 0)
 
         colorSelect3 = ThreeWaySegmentItem(context)
-        colorSelect3.setFillColor(Color.parseColor("#ff6100"))
+        colorSelect3.setFillColor(ORANGE)
 
         frameLayout.addView(colorSelect3, layoutParamColorSelector3)
 
