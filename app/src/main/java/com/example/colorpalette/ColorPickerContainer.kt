@@ -15,6 +15,9 @@ import androidx.annotation.Nullable
 import androidx.core.view.*
 import com.example.colorpalette.*
 import com.example.colorpalette.helpers.ThrottledTouchEventHandler
+import com.example.colorpalette.util.Constants.TEAL
+import com.example.colorpalette.util.Constants.GREEN
+import com.example.colorpalette.util.Constants.ORANGE
 
 class ColorPickerContainer @JvmOverloads constructor(
     context: Context?,
@@ -37,9 +40,7 @@ class ColorPickerContainer @JvmOverloads constructor(
     private var colorSelect2: ThreeWaySegmentItem
     private var colorSelect3: ThreeWaySegmentItem
     private var selectedColorSegment = -1
-    private val TEAL = parseColor("#00c2a3")
-    private val GREEN = parseColor("#4ba54f")
-    private val ORANGE = parseColor("#ff6100")
+
     private var segmentColors : MutableList<Int> = mutableListOf<Int>(TEAL, GREEN,
         ORANGE)
     private val DEFAULT_COLOR = "#2c2c2c"
