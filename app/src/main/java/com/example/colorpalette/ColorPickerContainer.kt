@@ -6,16 +6,17 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PointF
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import androidx.annotation.Nullable
 import androidx.core.view.*
 import com.example.colorpalette.*
 import com.example.colorpalette.helpers.ThrottledTouchEventHandler
-import com.example.colorpalette.util.Constants.*
+import com.example.colorpalette.util.Constants.Companion.BG_COLOR
+import com.example.colorpalette.util.Constants.Companion.GREEN
+import com.example.colorpalette.util.Constants.Companion.ORANGE
+import com.example.colorpalette.util.Constants.Companion.TEAL
 
 class ColorPickerContainer @JvmOverloads constructor(
     context: Context?,
