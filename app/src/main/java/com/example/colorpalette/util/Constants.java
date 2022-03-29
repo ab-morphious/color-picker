@@ -8,4 +8,5 @@ public class Constants {
     public static final int TEAL = parseColor("#00c2a3");
     public static final int GREEN = parseColor("#4ba54f");
     public static final int ORANGE = parseColor("#ff6100");
+    public static final int BG_COLOR = parseColor("#2c2c2c");
 }

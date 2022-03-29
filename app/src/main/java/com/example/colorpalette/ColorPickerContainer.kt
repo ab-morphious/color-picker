@@ -15,9 +15,7 @@ import androidx.annotation.Nullable
 import androidx.core.view.*
 import com.example.colorpalette.*
 import com.example.colorpalette.helpers.ThrottledTouchEventHandler
-import com.example.colorpalette.util.Constants.TEAL
-import com.example.colorpalette.util.Constants.GREEN
-import com.example.colorpalette.util.Constants.ORANGE
+import com.example.colorpalette.util.Constants.*
 
 class ColorPickerContainer @JvmOverloads constructor(
     context: Context?,
@@ -212,7 +210,7 @@ class ColorPickerContainer @JvmOverloads constructor(
         )
 
         var frameLayout = FrameLayout(context)
-        frameLayout.setBackgroundColor(Color.parseColor("#2c2c2c"))
+        frameLayout.setBackgroundColor(BG_COLOR)
 
         val layoutParamColorSelector = LayoutParams(
             50,
