@@ -25,14 +25,14 @@ class ThreeWaySegmentItem @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        canvas!!.drawCircle(width * 1f / 2, height * 1f / 2, 20f, selectorPaint)
+        canvas.drawCircle(width * 1f / 2, height * 1f / 2, 20f, selectorPaint)
     }
 
 
     fun setFillColor(color : Int)
     {
         this.color  = color
-        selectorPaint.setColor(color)
+        selectorPaint.color = color
         invalidate()
     }
 }

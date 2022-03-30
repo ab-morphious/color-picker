@@ -49,8 +49,7 @@ class ColorPickerContainer @JvmOverloads constructor(
         val maxWidth = MeasureSpec.getSize(widthMeasureSpec)
         val maxHeight = MeasureSpec.getSize(heightMeasureSpec)
         val width: Int
-        val height: Int
-        height = Math.min(maxWidth, maxHeight)
+        val height: Int = Math.min(maxWidth, maxHeight)
         width = height
         super.onMeasure(
             MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
