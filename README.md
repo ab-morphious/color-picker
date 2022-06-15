@@ -1,3 +1,3 @@
 # color-picker
-Color Picker - Kotlin, Observers, Custom View
+Color Picker - Kotlin, Observer, Custom View
 
